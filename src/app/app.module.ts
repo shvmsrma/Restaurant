@@ -13,12 +13,15 @@ import { MenuComponent } from './menu/menu.component';
 import { DishdetailComponent } from './dishdetail/dishdetail.component';
 import { DishService } from './services/dish.service';
 import{PromotionService} from './services/promotion.service';
+import{LeaderService} from './services/leaders.service';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import{AppRoutingModule} from './app-routing/app-routing.module';
+import { LoginComponent } from './login/login.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,8 @@ import{AppRoutingModule} from './app-routing/app-routing.module';
     FooterComponent,
     HomeComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    LoginComponent
     
     
   ],
@@ -42,12 +46,17 @@ import{AppRoutingModule} from './app-routing/app-routing.module';
     MatGridListModule,
     MatCardModule,
     MatButtonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatDialogModule
     
   
   ],
   providers:[DishService,
-    PromotionService],
+    PromotionService,
+  LeaderService],
+  entryComponents[
+    LoginComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

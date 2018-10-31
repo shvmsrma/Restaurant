@@ -3,6 +3,7 @@ import { Dish } from '../shared_folder/dish';
 import {DISHES} from '../shared_folder/dishes';
 import {DishService} from '../services/dish.service';
 
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
