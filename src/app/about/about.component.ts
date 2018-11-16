@@ -15,7 +15,8 @@ export class AboutComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.leaders = this.leaderService.getLeaders();
+    this.leaderService.getLeaders()
+    .subscribe((leaders) => this.leaders = leaders);;
   
   }
 
