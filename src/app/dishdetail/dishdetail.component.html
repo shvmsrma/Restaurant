@@ -29,8 +29,8 @@ fxLayoutGap="10px">
 </mat-card>
 </div>
 
-<div fxFlex="40" *ngIf="dish">
-  <mat-list >
+<div fxFlex="40" *ngIf="dish" >
+  <mat-list>
     <h3>Comments</h3>
     <mat-list-item *ngFor="let comment of dish.comments">
       <h4 matLine>{{comment.comment}}</h4>
@@ -40,11 +40,50 @@ fxLayoutGap="10px">
         </span>
         </p>
     </mat-list-item>
+    <mat-list-item *ngIf="commentForm.valid">
+        <p mat-line>{{comment.comment}}</p>
+        <p mat-line><span>{{comment.rating}} stars</span></p>
+        <p mat-line>
+          <span>-- {{comment.name}} </span>
+        </p>
+      </mat-list-item>
+    
   </mat-list>
 </div>
 
-    <div fxFlex [hidden]="dish">
-      <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
-    </div>
+<div fxFlex="40" *ngIf = "dish">
     
+    <form novalidate [formGroup]="commentForm" #cform="ngForm" (ngSubmit)="onSubmit()">
+        <p>
+          <mat-form-field class="half-width">
+            <input matInput formControlName="name" placeholder="Your Name" type="text"required>
+            <mat-error *ngIf="formErrors.name">
+                {{formErrors.name}}
+            </mat-error>
+          </mat-form-field>
+        </p>  
+        <mat-slider matInput formControlName ="rating" 
+        thumbLabel [displayWith]="formatLabel" tickInterval="1" min="1" max="5" >
+        <mat-error *ngIf="formErrors.rating">
+            {{formErrors.rating}}
+        </mat-error>
+        </mat-slider>
+
+         <mat-form-field class="full-width">
+         <textarea matInput formControlName="comment" placeholder="Your Comment" rows=12>
+         </textarea >
+         <mat-error *ngIf="formErrors.comment">
+            {{formErrors.comment}}
+         </mat-error>
+        </mat-form-field>
+
+        <button type="submit" mat-button class="background-primary text-floral-white"
+      [disabled]="commentForm.invalid">Submit</button>
+        </form> 
+
+<div fxFlex [hidden]="dish">
+    <mat-spinner></mat-spinner>
+    <h4>Loading . . . Please Wait</h4>
+  </div>
+</div>
 </div>
